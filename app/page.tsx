@@ -3,11 +3,11 @@ import Link from "next/link";
 
 export default function Home() {
   return (
-    <div className="min-h-screen flex justify-center items-center p-5 max-w-5xl mx-auto">
-      <div className="md:grid grid-cols-2 gap-5">
+    <div className="mx-auto flex min-h-screen max-w-5xl items-center justify-center p-5">
+      <div className="grid-cols-2 gap-5 md:grid">
         <div>
           <h1 className="text-4xl font-bold text-blue-500">Miniso</h1>
-          <h2 className="text-2xl text-blue-400 mt-5">
+          <h2 className="mt-5 text-2xl text-blue-400">
             Capture Your Ideas Anytime, Anywhere
           </h2>
 
@@ -20,7 +20,7 @@ export default function Home() {
 
           <Link
             href={"/login"}
-            className="p-2 bg-blue-600 text-white font-medium active:bg-blue-600 rounded my-2 cursor-pointer hover:bg-blue-500"
+            className="my-2 cursor-pointer rounded bg-blue-600 p-2 font-medium text-white hover:bg-blue-500 active:bg-blue-600"
           >
             Let's Start
           </Link>

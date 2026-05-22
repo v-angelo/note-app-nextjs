@@ -11,7 +11,7 @@ export default function Home() {
             Capture Your Ideas Anytime, Anywhere
           </h2>
 
-          <p className="text-justify">
+          <p className="mb-5 text-justify">
             Organize notes, tasks and thoughts effortlessly with our smart and
             secure note-taking app. Whether you're managing daily tasks, meeting
             notes, study materials, or creative ideas, our note app helps you
@@ -20,7 +20,7 @@ export default function Home() {
 
           <Link
             href={"/login"}
-            className="my-2 cursor-pointer rounded bg-blue-600 p-2 font-medium text-white hover:bg-blue-500 active:bg-blue-600"
+            className="cursor-pointer rounded bg-blue-600 p-2 font-medium text-white hover:bg-blue-500 active:bg-blue-600"
           >
             Let's Start
           </Link>

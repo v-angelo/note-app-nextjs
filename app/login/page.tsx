@@ -4,7 +4,9 @@ export default function Login() {
   return (
     <div className="flex min-h-screen items-center justify-center p-3">
       <form className="max-w-90 rounded bg-blue-400 p-5">
-        <h3 className="text-2xl font-bold text-white">Miniso</h3>
+        <Link href={"/"} className="text-2xl font-bold text-white">
+          Miniso
+        </Link>
         <p className="text-white">Note Taking made easier!</p>
 
         <input

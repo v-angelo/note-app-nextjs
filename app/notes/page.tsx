@@ -1,3 +1,4 @@
+import Link from "next/link";
 import {
   FaClock,
   FaNoteSticky,
@@ -7,13 +8,16 @@ import {
 } from "react-icons/fa6";
 import { MdDelete } from "react-icons/md";
 
-export default function Dashboard() {
+export default function Notes() {
   return (
     <div className="min-h-screen">
+      {/* header */}
       <nav className="mx-auto flex max-w-5xl items-center justify-between p-5">
         <div className="flex items-center justify-center gap-2">
           <FaNoteSticky className="text-2xl text-blue-400" />
-          <h3 className="text-2xl font-semibold text-blue-400">Miniso</h3>
+          <Link href={"/"} className="text-2xl font-semibold text-blue-400">
+            Miniso
+          </Link>
         </div>
 
         <div className="flex items-center justify-center gap-2">
@@ -23,6 +27,7 @@ export default function Dashboard() {
         </div>
       </nav>
 
+      {/* dashboard */}
       <section className="mx-auto mt-10 max-w-5xl rounded bg-slate-100 p-5 shadow">
         <h2 className="mb-5 p-2 text-4xl font-semibold text-blue-500 max-sm:text-center">
           My Notes
@@ -32,24 +37,31 @@ export default function Dashboard() {
           <article className="min-h-40 min-w-70 rounded-xl bg-amber-100 p-3 shadow">
             <div className="flex items-center justify-between">
               <h4 className="text-gray-700">Title</h4>
-              <FaPenToSquare className="cursor-pointer text-gray-700" />
+              <Link href={"/notes/123"}>
+                <FaPenToSquare className="cursor-pointer text-gray-700" />
+              </Link>
             </div>
 
-            <p className="my-5">description</p>
+            <hr className="my-3 text-slate-200" />
+
+            <p className="my-3">notes body</p>
 
             <div className="flex items-center justify-between">
               <div className="flex items-center justify-center gap-2 text-sm text-gray-600">
                 <FaClock />
-                <h4>22/05/2026</h4>
+                <h4>11/09/2026</h4>
               </div>
               <MdDelete className="cursor-pointer text-lg text-red-500" />
             </div>
           </article>
 
-          <article className="flex min-h-40 min-w-70 cursor-pointer flex-col items-center justify-center rounded-xl border border-dotted p-3 shadow">
+          <Link
+            href={"/notes/add"}
+            className="flex min-h-40 min-w-70 cursor-pointer flex-col items-center justify-center rounded-xl border border-dotted p-3 shadow"
+          >
             <FaPenToSquare />
             <h4>New Note</h4>
-          </article>
+          </Link>
         </div>
       </section>
     </div>

@@ -10,9 +10,12 @@ export const connectDB = async () => {
   try {
     const response = await mongoose.connect(connectionString);
 
-    console.log("DB Connection Successful!!");
+    console.log(response);
+
+    console.log("DB Connection Successfull!!");
   } catch (err) {
-    console.log("DB Connection Failed!!");
     console.log(err);
+
+    console.log("DB Connection Failed!!");
   }
 };

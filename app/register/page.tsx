@@ -31,7 +31,7 @@ export default function Register() {
       });
 
       const serverResponse = await response.json();
-      // console.log(serverResponse);
+      console.log(serverResponse);
 
       if (response.status === 201) {
         toast.success(serverResponse.message);
@@ -63,6 +63,7 @@ export default function Register() {
         <p className="text-white">Note Taking made easier!</p>
 
         <input
+          value={userDetails.name}
           onChange={(e) =>
             setUserDetails({ ...userDetails, name: e.target.value })
           }
@@ -71,6 +72,7 @@ export default function Register() {
           placeholder="Name"
         />
         <input
+          value={userDetails.email}
           onChange={(e) =>
             setUserDetails({ ...userDetails, email: e.target.value })
           }
@@ -79,6 +81,7 @@ export default function Register() {
           placeholder="Email"
         />
         <input
+          value={userDetails.password}
           onChange={(e) =>
             setUserDetails({ ...userDetails, password: e.target.value })
           }

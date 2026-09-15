@@ -26,8 +26,10 @@ export async function POST(req: NextRequest) {
         password: encryptPassword,
       });
 
+      const { password: _, ...userResponse } = newUser.toObject();
+
       return NextResponse.json(
-        { message: "User Registered Successfully!!", data: newUser },
+        { message: "User Registered Successfully!!", data: userResponse },
         { status: 201 },
       );
     }

@@ -97,7 +97,15 @@ export default function AddNote() {
         <h4 className="text-gray-500">Add Notes</h4>
 
         <div className="my-5 flex items-center justify-between">
-          <FaXmark className="text-xl" />
+          <button
+            className="cursor-pointer"
+            onClick={() => {
+              redirect("/notes");
+            }}
+          >
+            <FaXmark className="text-xl" />
+          </button>
+
           <button
             onClick={handleSaveNote}
             className="flex cursor-pointer items-center rounded-full bg-green-400 px-3 py-1 text-sm font-semibold text-white"

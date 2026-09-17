@@ -4,6 +4,7 @@ import { signOut, useSession } from "next-auth/react";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import { useEffect, useState } from "react";
+import toast from "react-hot-toast";
 
 import {
   FaClock,
@@ -37,20 +38,37 @@ export default function Notes() {
 
   const [allNotes, setAllNotes] = useState<Note[]>([]);
 
+  const fetchAllNotes = async () => {
+    const email = session?.user?.email;
+    if (!email) {
+      return;
+    }
+    const res = await fetch(`/api/notes?email=${email}`);
+
+    const allNotes = await res.json();
+
+    setAllNotes(allNotes.data);
+  };
+
   useEffect(() => {
-    const fetchAllNotes = async () => {
-      const email = session?.user?.email;
-      if (!email) {
-        return;
-      }
-      const res = await fetch(`/api/notes?email=${email}`);
-
-      const allNotes = await res.json();
-
-      setAllNotes(allNotes.data);
-    };
     fetchAllNotes();
   }, [session]);
+
+  const deleteNote = async (id: string) => {
+    try {
+      const res = await fetch(`/api/notes/${id}`, {
+        method: "DELETE",
+      });
+
+      if (res.status === 200) {
+        toast.success("Note deleted successfully!!");
+
+        fetchAllNotes();
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   if (status === "loading") {
     return (
@@ -92,15 +110,15 @@ export default function Notes() {
         </h2>
 
         {/* notes card */}
-        <div className="mx-auto flex flex-wrap items-center gap-5 max-sm:justify-center">
+        <div className="mx-auto grid items-center gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {allNotes?.map((note) => (
             <article
               key={note?._id}
-              className={`min-h-40 min-w-70 rounded-xl p-3 shadow ${colorClasses[note?.color]}`}
+              className={`min-h-40 rounded-xl p-3 shadow ${colorClasses[note?.color]}`}
             >
               <div className="flex items-center justify-between">
                 <h4 className="text-gray-700">{note?.title}</h4>
-                <Link href={"/notes/123"}>
+                <Link href={`/notes/${note?._id}`}>
                   <FaPenToSquare className="cursor-pointer text-gray-700" />
                 </Link>
               </div>
@@ -122,7 +140,10 @@ export default function Notes() {
                     })}
                   </h4>
                 </div>
-                <MdDelete className="cursor-pointer text-lg text-red-500" />
+
+                <button onClick={() => deleteNote(note?._id)}>
+                  <MdDelete className="cursor-pointer text-lg text-red-500" />
+                </button>
               </div>
             </article>
           ))}
